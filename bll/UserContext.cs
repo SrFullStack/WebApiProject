@@ -136,7 +136,7 @@ namespace T_Repository
                     .HasMaxLength(50)
                     .HasColumnName("lastname");
 
-                entity.Property(e => e.Nameuser
+                entity.Property(e => e.Nameuser)
                     .HasMaxLength(50)
                     .HasColumnName("nameuser");
 

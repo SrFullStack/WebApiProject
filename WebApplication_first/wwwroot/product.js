@@ -4,7 +4,7 @@
     if (pro) {
         var product = JSON.parse(pro);
     }
-    document.getElementById("ItemsCountText").innerHTML = product.length;
+ //   document.getElementById("ItemsCountText").innerHTML = product.length;
     sessionStorage.setItem('basket', basket)
 }, GetProduct());
 window.addEventListener("load", GetCategory());

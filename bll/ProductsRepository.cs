@@ -20,7 +20,7 @@ namespace T_Repository
         }
 
       
-        public async Task<List<Product>> GetProducts(string?name, int?[] categoryIds,int? minPrice, int? maxPrice, int start, int limit, string? direction = "ASC")
+        public async Task<List<Product>> GetProducts(string? name, int?[] categoryIds, int? minPrice, int? maxPrice, int? start, int? limit, string? direction = "ASC")
         {
             var query = _dbContext.Products.Where(product =>
             (name == null ? (true) : (product.Name.Contains(name)))
