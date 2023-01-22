@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Service;
+using Zxcvbn;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -34,14 +35,12 @@ namespace WebApplication_first.Controllers
 
         // POST api/<PasswordController>
         [HttpPost]
-        public ActionResult<int> Post([FromBody] int password)
-
+         public int Post([FromBody] string code)
+          
         {
-            var pass_ok = _IUserService.ChckPassword(password);
-            if (pass_ok != null)
-                return pass_ok;
-            else
-                return StatusCode(404);
+       
+            Result result = Zxcvbn.Core.EvaluatePassword(code);
+            return result.Score;
         }
 
         // PUT api/<PasswordController>/5

@@ -5,7 +5,7 @@ const cart = [];
 function GetBasket() {
    
 
-    var cart = localStorage.getItem('basket');
+    var cart = sessionStorage.getItem('basket');
     if (cart) {
         cart = JSON.parse(cart);
     } 
@@ -26,7 +26,7 @@ function DrowCarts(basket,cart) {
     var clon = temp.content.cloneNode(true);
  clon.querySelector(".price").innerText = basket.price;
     clon.querySelector(".itemName").innerText = basket.name;
-    totalsum = localStorage.getItem('totalsum');
+    totalsum = sessionStorage.getItem('totalsum');
     document.getElementById("totalAmount").innerHTML = totalsum;
     document.getElementById("itemCount").innerHTML = cart.length;
     clon.querySelector(".image").style.backgroundImage = `url(./image/${basket.imageUrl})`;
@@ -40,7 +40,7 @@ async function placeOrder() {
         user=JSON.parse(user)
     }
     userId = user.userid;
-    var cart = localStorage.getItem('basket');
+    var cart = sessionStorage.getItem('basket');
     if (cart) {
         cart = JSON.parse(cart);
     }
@@ -63,12 +63,13 @@ async function placeOrder() {
             method: 'POST',
             body: JSON.stringify(datils)
         })
+   
 
     }
 
 const basket = [];
 function RemoveItem(basket) {
-    var cart = localStorage.getItem('basket');
+    var cart = sessionStorage.getItem('basket');
     if (cart) {
         cart = JSON.parse(cart);
     }
@@ -76,8 +77,12 @@ function RemoveItem(basket) {
         if (cart[i].id == basket.id) {
             cart.splice(cart[i], 1)
             basket = cart;
-            localStorage.setItem('basket', JSON.stringify(basket));
+            sessionStorage.setItem('basket', JSON.stringify(basket));
             Remove();
+            totalsum = sessionStorage.getItem('totalsum');
+            totalsum = (JSON.parse(totalsum));
+            totalsum = totalsum - cart[i].price;
+            sessionStorage.setItem('totalsum', totalsum)
             DrowCart(basket);
         }
 
@@ -91,7 +96,6 @@ function RemoveItem(basket) {
 function Remove() {
      var arrItem = document.getElementsByClassName("item-row");
     for (var i = arrItem.length-1; i >= 0; i--) {
-        tyryh = arrItem[i]
         document.body.removeChild(arrItem[i]);
     }
 }

@@ -10,7 +10,7 @@ async function login() {
     
     alert(f)
   
-    const password = document.getElementById("pass").value;
+    const password = document.getElementById("password").value;
     const firstname = document.getElementById("firstname").value;
     const lastname = document.getElementById("lastname").value;
     const email = document.getElementById("email").value;
@@ -28,15 +28,15 @@ async function login() {
 
 async function get() {
    
-    const password = document.getElementById("password").value;
-    const nameuser = document.getElementById("nameuser").value;
+    const password = document.getElementById("system").value;
+    const nameuser = document.getElementById("nameuse").value;
 
     const ress = await fetch(`https://localhost:44354/api/user/?nameuser=${nameuser}&password=${password}`)
     const res1 = await ress.json();
 
 
 
-    if (res1) {
+    if (res1.nameuser==nameuser) {
         sessionStorage.setItem('current', JSON.stringify(res1));
         window.location.href = "Login.html"
     }
@@ -62,6 +62,20 @@ async function update() {
 
 
     
+}
+async function checkPassword() {
+    const code = document.getElementById("password").value;
+    const res = await fetch("https://localhost:44354/api/Password", {
+        headers: { "content-type": "application/json" },
+        method: 'POST',
+        body: JSON.stringify(code)
+    });
+    if (res.ok) {
+
+        let res2 = await res.json()
+        document.getElementById("pass").value = res2;
+        await alert(res2);
+    }
 }
 ok = () => {
     let userobject = sessionStorage.getItem('current')
@@ -89,6 +103,9 @@ async function login1() {
         const reg = await res.json()
      /*   alert(reg)*/
     }
+  
+
+    
 
    
 }

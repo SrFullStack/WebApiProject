@@ -17,10 +17,10 @@ namespace Service
         }
 
 
-        async public Task<IEnumerable<Product>> GetProducts(string? name, int?[] categoryIds, int? minPrice, int? maxPrice)
+        async public Task<IEnumerable<Product>> GetProducts(string? name, int?[] categoryIds, int? minPrice, int? maxPrice, int? start, int? limit, string? direction)
         {
             {
-                return await _IProductsRepository.GetProducts(name, categoryIds, minPrice, maxPrice);
+                return await _IProductsRepository.GetProducts(name, categoryIds, minPrice, maxPrice,start,limit,direction);
                
               
                 

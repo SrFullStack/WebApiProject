@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Entitiy
+namespace DTO
 {
-    public partial class OrderItem
+    public class OrderItemDTO
     {
         public int Id { get; set; }
         public int? CarId { get; set; }
         public int? OrdersId { get; set; }
         public int? Quantity { get; set; }
-
-        public virtual Product? Car { get; set; }
-   
-        public virtual Order? Orders { get; set; }
     }
 }

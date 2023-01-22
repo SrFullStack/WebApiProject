@@ -1,4 +1,12 @@
-﻿window.addEventListener("load", GetProduct());
+﻿window.addEventListener("load", (item) => {
+   
+    let pro = sessionStorage.getItem('basket')
+    if (pro) {
+        var product = JSON.parse(pro);
+    }
+    document.getElementById("ItemsCountText").innerHTML = product.length;
+    sessionStorage.setItem('basket', basket)
+}, GetProduct());
 window.addEventListener("load", GetCategory());
 
 
@@ -15,6 +23,7 @@ function ShowProducts(product) {
     var price = String(product.price);
     var tmp = document.getElementById("temp-card");
     var clon = tmp.content.cloneNode(true);
+    
     clon.querySelector("h1").innerText = product.name;
     clon.querySelector(".price").innerText =price;
     clon.querySelector(".description").innerText = product.description;
@@ -47,13 +56,16 @@ async function FilterProduct() {
     var categoryList = document.getElementsByClassName("opt");
     var minPrice = document.getElementById("minPrice").value;
     var maxPrice = document.getElementById("maxPrice").value;
+    const start = 1;
+    const limit = 5;
+    const direction = "ASC";
     var categoryIds = "";
     for (var i = 0; i <= categoryList.length; i++) {
         if (categoryList[i].checked) {
             categoryIds += `&categoryIds=${categoryList[i].value}`
 
         }
-        const url = await fetch(`https://localhost:44354/api/Products/?name=${name}&minPrice=${minPrice}&maxPrice=${maxPrice}${categoryIds}`)
+        const url = await fetch(`https://localhost:44354/api/Products/?name=${name}&minPrice=${minPrice}&maxPrice=${maxPrice}${categoryIds}&start=${start}&limit=${limit}&direction=${direction}`)
       
         const res1 = await url.json();
 
@@ -68,16 +80,51 @@ async function FilterProduct() {
     }
 
 }
-const basket = [];
+function getbasket() {
+
+
+    
+
+    var cart = sessionStorage.getItem('basket');
+    if (cart) {
+        cart = JSON.parse(cart);
+        return cart;
+    } 
+
+
+}
+
  totalsum = 0;
 function ToBasket(product) {
-    basket.push(product)
-   
-    localStorage.setItem('basket', JSON.stringify(basket));
+    //if (pro = sessionStorage.getItem('basket')) {
+    //    basket = sessionStorage.getItem('basket');
+    
+    //}
+    //else {
+    //    const basket = [];
+    //}
+    const r = getbasket();
+    if (r == undefined) {
+        const basket = [];
+        basket.push(product)
+        sessionStorage.setItem('basket', JSON.stringify(basket));
+     t=   sessionStorage.getItem('basket')
+    }
+    else {
 
+        r.push(product);
+        sessionStorage.setItem('basket', JSON.stringify(r));
+    }
 
     totalsum += product.price
-    localStorage.setItem('totalsum', JSON.stringify(totalsum));
-    document.getElementById("ItemsCountText").innerHTML = basket.length;
-}
+    sessionStorage.setItem('totalsum', JSON.stringify(totalsum));
+
+    var cart = sessionStorage.getItem('basket');
+    if (cart) {
+        cart = JSON.parse(cart);
+        i = cart.length;
+    } 
+    
+    document.getElementById("ItemsCountText").innerHTML = cart.length;
+} 
 

@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Dll\Service.cspr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "T_Repository", "bll\T_Repository.csproj", "{5DB057A8-AB87-4488-A8C0-5B342F30FEEC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTO", "DTO\DTO.csproj", "{DE02B960-FE39-4400-8BFF-91A0D8A5DCD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5DB057A8-AB87-4488-A8C0-5B342F30FEEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DB057A8-AB87-4488-A8C0-5B342F30FEEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DB057A8-AB87-4488-A8C0-5B342F30FEEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE02B960-FE39-4400-8BFF-91A0D8A5DCD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE02B960-FE39-4400-8BFF-91A0D8A5DCD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE02B960-FE39-4400-8BFF-91A0D8A5DCD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE02B960-FE39-4400-8BFF-91A0D8A5DCD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,12 +9,12 @@
     <link href="newcss.css" rel="stylesheet" />
     <div id="desige">
         <label> nameuser</label>
-        <input id="nameuser" />
+        <input id="nameuse" />
         <br />
         <br />
         <label>password </label>
 
-        <input id="password" />
+        <input type="password" id="system" />
         <br />
         <br />
         <button onclick="get()">התחברות</button>
@@ -30,13 +30,13 @@
         <input id="email" />
         <br />
         <br />
-       
+
         <label> nameuser</label>
         <input id="user" />
         <br />
         <br />
         <label>password </label>
-        <input id="pass" />
+        <input type="password" id="password" />
         <br />
         <br />
         <label> firstname</label>
@@ -47,6 +47,8 @@
 
         <input id="lastname" />
         <br />
+        <button onclick="checkPassword()">check password</button>
+        <progress max="4" id="pass"></progress>
 
         <button onclick="login()">רישום</button>
     </div>

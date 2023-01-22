@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Entitiy
+namespace DTO
 {
-    public partial class Product
+    public class ProductDTO
     {
-        public Product()
-        {
-            OrderItems = new HashSet<OrderItem>();
-        }
 
         public int Id { get; set; }
         public string? Name { get; set; }
@@ -17,8 +15,6 @@ namespace Entitiy
         public int? CategoryId { get; set; }
         public string? Description { get; set; }
         public string? ImageUrl { get; set; }
-
-        public virtual Category? Category { get; set; }
-        public virtual ICollection<OrderItem> OrderItems { get; set; }
+        public string? Company { get; set; } 
     }
 }

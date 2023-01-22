@@ -25,11 +25,18 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Dll\Service.csproj" />
+    <ProjectReference Include="..\DTO\DTO.csproj" />
     <ProjectReference Include="..\Entitiy\Entitiy.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="wwwroot\file.tsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\nlog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

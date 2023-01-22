@@ -5,6 +5,8 @@ using WebApplication_first.wwwroot;
 using   Entitiy;
 using T_Repository;
 using Service;
+using AutoMapper;
+using DTO;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace WebApplication_first.Controllers
@@ -16,18 +18,19 @@ namespace WebApplication_first.Controllers
        
         private readonly IUserService _IUserService;
         private readonly ILogger<userController> _Ilogger;
-
-        public userController(IUserService IUserService, ILogger<userController> logger)
+        private readonly IMapper _mapper;
+        public userController(IUserService IUserService, ILogger<userController> logger, IMapper IMapper)
         {
             _Ilogger = logger;
             _IUserService = IUserService;
+            _mapper= IMapper;
         }
 
         [HttpGet]
       
         // GET api/<userControler>/5
         [HttpGet("{id}")]
-        async public Task<ActionResult<UserTable>> Get([FromQuery] string nameuser, [FromQuery] int password)
+        async public Task<ActionResult<UserDTO>> Get([FromQuery] string nameuser, [FromQuery] int password)
         {
             try
             {
@@ -35,7 +38,8 @@ namespace WebApplication_first.Controllers
                 UserTable user = await _IUserService.Get(nameuser, password);
                 if (user != null)
                 {
-                    return user;
+                    UserDTO res = _mapper.Map<UserTable, UserDTO>(user);
+                    return res;
                 }
             }
             catch
