@@ -21,7 +21,7 @@ function DrowCart(cart) {
     }
 }
 function DrowCarts(basket,cart) {
-
+    //
     var temp = document.getElementById("temp-row");
     var clon = temp.content.cloneNode(true);
  clon.querySelector(".price").innerText = basket.price;
