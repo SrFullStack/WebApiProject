@@ -17,11 +17,11 @@ namespace WebApplication_first.Controllers
     {
        
         private readonly IUserService _IUserService;
-        private readonly ILogger<userController> _Ilogger;
+        private readonly ILogger<userController> _logger;
         private readonly IMapper _mapper;
         public userController(IUserService IUserService, ILogger<userController> logger, IMapper IMapper)
         {
-            _Ilogger = logger;
+            _logger = logger;
             _IUserService = IUserService;
             _mapper= IMapper;
         }
@@ -34,7 +34,7 @@ namespace WebApplication_first.Controllers
         {
             try
             {
-                _Ilogger.LogInformation($"enter this {nameuser} nameuser");
+                _logger.LogInformation($"enter this {nameuser} nameuser");
                 UserTable user = await _IUserService.Get(nameuser, password);
                 if (user != null)
                 {
@@ -45,7 +45,7 @@ namespace WebApplication_first.Controllers
             catch
                 (Exception e)
             {
-                _Ilogger.LogError(e.Message);
+                _logger.LogError(e.Message);
             }
             return NoContent();
 

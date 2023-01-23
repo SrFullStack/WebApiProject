@@ -31,6 +31,8 @@ namespace WebApplication_first.Controllers
 
             public async Task<IEnumerable<ProductDTO>> Get([FromQuery] string? name, [FromQuery] int?[] categoryIds, [FromQuery] int? minPrice, [FromQuery] int? maxPrice, [FromQuery] int start, [FromQuery] int limit, [FromQuery] string? direction = "ASC" )
         {
+            int a = 5;
+            int b = a / 0;
             IEnumerable<Product> products = await _IProductsService.GetProducts(name, categoryIds, minPrice, maxPrice,start,limit,direction);
 
             IEnumerable<ProductDTO> res = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductDTO>>(products);

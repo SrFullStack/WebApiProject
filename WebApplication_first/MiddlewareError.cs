@@ -9,15 +9,15 @@ namespace WebApplication_first
     public class MiddlewareError
     {
         private readonly RequestDelegate _next;
-        private readonly ILogger<MiddlewareError> _Ilogger;
+        //private readonly ILogger<MiddlewareError> _logger;
 
-        public MiddlewareError(RequestDelegate next, ILogger<MiddlewareError> logger)
+        public MiddlewareError(RequestDelegate next)
         {
             _next = next;
-            _Ilogger = logger;
+            //_logger = logger;
         }
 
-        public async Task Invoke(HttpContext httpContext)
+        public async Task Invoke(HttpContext httpContext, ILogger<MiddlewareError> logger)
         {
             try
             {
@@ -27,7 +27,7 @@ namespace WebApplication_first
             catch
                 (Exception e)
             {
-                _Ilogger.LogError(e.Message);
+                logger.LogError(e.Message);
                 httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 httpContext.Response.WriteAsync(e.Message);
             }

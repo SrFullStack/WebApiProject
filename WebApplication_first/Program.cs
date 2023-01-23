@@ -3,6 +3,7 @@ using Service;
 using T_Repository;
 using Swashbuckle.AspNetCore;
 using NLog.Web;
+using WebApplication_first;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,7 +31,8 @@ builder.Services.AddSwaggerGen();
 
 
 var app = builder.Build();
-
+app.UseMiddlewareError();
+app.UseMiddlewareRating();
 if (app.Environment.IsDevelopment())
 { 
     app.UseSwagger();
