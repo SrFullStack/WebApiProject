@@ -25,30 +25,34 @@
     <button onclick="usernew()">משתמש חדש</button>
 
     <div id="details" style="display:none">
+        <form>
+            <label> email</label>
+            <input id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="אנא הזן כתובת מייל תקינה" />
+            <label> nameuser</label>
+            <input id="user" pattern=".{4,}" title="אנא הזן 4 תווים לפחות "/>
+            <br />
+            <br />
+            <label>password </label>
+            <input type="password" id="password" required />
+            <br />
+            <br />
+            <label> firstname</label>
+            <input id="firstname" />
+            <br />
+            <br />
+            <label>lastname </label>
 
-        <label> email</label>
-        <input id="email" />
+            <input id="lastname" />
+            <br />
+            <button onclick="checkPassword()">check password</button>
+            <progress max="4" id="pass"></progress>
+
+            <input type="submit" value="Submit">
+        </form>
         <br />
         <br />
 
-        <label> nameuser</label>
-        <input id="user" />
-        <br />
-        <br />
-        <label>password </label>
-        <input type="password" id="password" />
-        <br />
-        <br />
-        <label> firstname</label>
-        <input id="firstname" />
-        <br />
-        <br />
-        <label>lastname </label>
-
-        <input id="lastname" />
-        <br />
-        <button onclick="checkPassword()">check password</button>
-        <progress max="4" id="pass"></progress>
+        
 
         <button onclick="login()">רישום</button>
     </div>
