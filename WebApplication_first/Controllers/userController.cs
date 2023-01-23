@@ -25,7 +25,7 @@ namespace WebApplication_first.Controllers
             _IUserService = IUserService;
             _mapper= IMapper;
         }
-
+        ///
         [HttpGet]
       
         // GET api/<userControler>/5
