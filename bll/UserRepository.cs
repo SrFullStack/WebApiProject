@@ -16,7 +16,7 @@ namespace T_Repository
 
         }
         string path = "./userdata.txt";
-        async public  Task<UserTable>  Get(string nameuser, int password)
+        async public Task<UserTable> Get(string nameuser, int password)
         {
             var userQuery = (from user in _userContext.UserTables
                              where user.Password == password && user.Nameuser == nameuser
@@ -26,9 +26,9 @@ namespace T_Repository
 
         }
 
-        async public  Task<UserTable> Post(UserTable user)
+        async public Task<UserTable> Post(UserTable user)
         {
-        
+
             await _userContext.UserTables.AddAsync(user);
             await _userContext.SaveChangesAsync();
             return user;
@@ -37,18 +37,21 @@ namespace T_Repository
 
         public async Task<UserTable> Put(int userid, UserTable user)
         {
-           
-            var update = await _userContext.UserTables.FindAsync(userid);
-            if (update == null)
-            {
 
-                return null;
-            }
-            _userContext.Entry(update).CurrentValues.SetValues(user);
-          
+            //var update = await _userContext.UserTables.FindAsync(userid);
+            //if (update == null)
+            //{
+
+            //    return null;
+            //}
+            //_userContext.Entry(update).CurrentValues.SetValues(user);
+
+            //await _userContext.SaveChangesAsync();
+            //return user;
+            _userContext.UserTables.Update(user);
             await _userContext.SaveChangesAsync();
             return user;
-        }
+        } 
 
     }
 }
