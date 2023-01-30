@@ -32,6 +32,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 app.UseMiddlewareError();
+app.UseMiddlewareCache();
 //app.UseMiddlewareRating();
 if (app.Environment.IsDevelopment())
 { 

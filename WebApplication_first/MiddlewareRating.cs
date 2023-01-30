@@ -24,11 +24,11 @@ namespace WebApplication_first
             string HOST = httpContext.Request.Host.ToString();
           
             string PATH = httpContext.Request.Path;
-            //DateTime Record_Dat = new DateTime();
-            //string Record_Date = Record_Dat.ToString();
+            string Referer = httpContext.Request.RouteValues.ToString();
+            string UserAgent = httpContext.Request.Headers.UserAgent.ToString();
             string ConnectionString = config.GetConnectionString("school");
-
-            string query = "INSERT INTO RATING(HOST, METHOD, PATH) VALUES(@HOST,@METHOD,@PATH)";
+            //DateTime Record_Dat = DateTime.Now;
+            string query = "INSERT INTO RATING(HOST, METHOD, PATH,Referer,UserAgent) VALUES(@HOST,@METHOD,@PATH,@Referer,@UserAgent)";
 
             using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
             using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
@@ -45,6 +45,11 @@ namespace WebApplication_first
                 sqlCommand.Parameters.Add("@PATH", SqlDbType.NChar);
                 sqlCommand.Parameters["@PATH"].Value = PATH;
 
+                sqlCommand.Parameters.Add("@Referer", SqlDbType.NChar);
+                sqlCommand.Parameters["@Referer"].Value = PATH;
+
+                sqlCommand.Parameters.Add("@UserAgent", SqlDbType.NChar);
+                sqlCommand.Parameters["@UserAgent"].Value = PATH;
                 //
                 //sqlCommand.Parameters.Add("@Record_Date", SqlDbType.NChar);
                 //sqlCommand.Parameters["@Record_Date"].Value = Record_Date;
