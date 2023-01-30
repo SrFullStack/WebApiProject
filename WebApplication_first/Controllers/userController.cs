@@ -50,8 +50,8 @@ namespace WebApplication_first.Controllers
             return NoContent();
 
         }
-
-        // POST api/<userControler>//
+        
+        // POST api/<userControler>////
         [HttpPost]
         public ActionResult<UserTable> Post([FromBody] UserTable user)
         {
