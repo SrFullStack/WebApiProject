@@ -51,7 +51,7 @@ namespace WebApplication_first.Controllers
 
         }
 
-        // POST api/<userControler>
+        // POST api/<userControler>//
         [HttpPost]
         public ActionResult<UserTable> Post([FromBody] UserTable user)
         {
