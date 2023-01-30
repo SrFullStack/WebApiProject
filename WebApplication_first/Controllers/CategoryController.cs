@@ -23,7 +23,7 @@ namespace WebApplication_first.Controllers
             _ICategoryService = ICategoryService;
             _mapper = IMapper;
         }
-        // GET: api/<CategoryController>///
+        // GET: api/<CategoryController>/////
         [HttpGet]
         public async Task< IEnumerable<CategoryDTO>> Get()
         {
