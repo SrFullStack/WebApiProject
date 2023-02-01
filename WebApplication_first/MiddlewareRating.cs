@@ -18,17 +18,17 @@ namespace WebApplication_first
 
         public Task Invoke(HttpContext httpContext, IConfiguration config)
         {
+    
 
-          
             string METHOD = httpContext.Request.Method;
             string HOST = httpContext.Request.Host.ToString();
           
             string PATH = httpContext.Request.Path;
-            string Referer = httpContext.Request.RouteValues.ToString();
-            string UserAgent = httpContext.Request.Headers.UserAgent.ToString();
+            string Referer = httpContext.Request.Headers["Referer"];
+            string USER_AGENT = httpContext.Request.Headers["User-Agent"];
             string ConnectionString = config.GetConnectionString("school");
-            //DateTime Record_Dat = DateTime.Now;
-            string query = "INSERT INTO RATING(HOST, METHOD, PATH,Referer,UserAgent) VALUES(@HOST,@METHOD,@PATH,@Referer,@UserAgent)";
+            DateTime Record_Date = DateTime.Now;
+            string query = "INSERT INTO RATING(HOST, METHOD, PATH,Referer,USER_AGENT,Record_Date) VALUES(@HOST,@METHOD,@PATH,@Referer,@USER_AGENT,@Record_Date)";
 
             using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
             using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
@@ -48,11 +48,11 @@ namespace WebApplication_first
                 sqlCommand.Parameters.Add("@Referer", SqlDbType.NChar);
                 sqlCommand.Parameters["@Referer"].Value = PATH;
 
-                sqlCommand.Parameters.Add("@UserAgent", SqlDbType.NChar);
-                sqlCommand.Parameters["@UserAgent"].Value = PATH;
-                //
-                //sqlCommand.Parameters.Add("@Record_Date", SqlDbType.NChar);
-                //sqlCommand.Parameters["@Record_Date"].Value = Record_Date;
+                sqlCommand.Parameters.Add("@USER_AGENT", SqlDbType.NChar);
+                sqlCommand.Parameters["@USER_AGENT"].Value = PATH;
+
+                sqlCommand.Parameters.Add("@Record_Date", SqlDbType.DateTime);
+                sqlCommand.Parameters["@Record_Date"].Value = Record_Date;
 
                 sqlConnection.Open();
                 int result = sqlCommand.ExecuteNonQuery();

@@ -19,11 +19,12 @@ namespace T_Repository
         }
    
  
-        public async Task AddOrder(Order order)
+        public async Task <Order>AddOrder(Order order)
 
         {
             await _dbContext.Orders.AddAsync(order);
             await _dbContext.SaveChangesAsync();
+            return order;
 
         }
 

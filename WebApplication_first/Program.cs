@@ -20,7 +20,7 @@ builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
 builder.Services.AddControllers();
 builder.Host.UseNLog();
 
-string ConnectionString = builder.Configuration.GetConnectionString("home");
+string ConnectionString = builder.Configuration.GetConnectionString("school");
 
 builder.Services.AddDbContext<UserContext>(option => option.UseSqlServer(ConnectionString));
 //builder.Services.AddDbContext<UserContext>(option => option.UseSqlServer("Server=SRV2\\PUPILS;Database=User;Trusted_Connection=True;"));
@@ -33,7 +33,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 app.UseMiddlewareError();
 app.UseMiddlewareCache();
-//app.UseMiddlewareRating();
+app.UseMiddlewareRating();
 if (app.Environment.IsDevelopment())
 { 
     app.UseSwagger();

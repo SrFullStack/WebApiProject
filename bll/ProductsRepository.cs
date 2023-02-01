@@ -19,7 +19,15 @@ namespace T_Repository
 
         }
 
-      
+        public async Task<Product> GetProductById(int id)
+        {
+
+            var list = (from product in _dbContext.Products
+                        where product.Id == id
+                        select product).ToArray<Product>();
+            return list.FirstOrDefault();
+
+        }
         public async Task<List<Product>> GetProducts(string? name, int?[] categoryIds, int? minPrice, int? maxPrice, int? start, int? limit, string? direction = "ASC")
         {
             var query = _dbContext.Products.Where(product =>

@@ -5,6 +5,6 @@ namespace T_Repository
     public interface IOrderRepository
     {
         //Task<Order> Post(Order order);
-        Task AddOrder(Order order);
+        Task<Order> AddOrder(Order order);
     }
 }
